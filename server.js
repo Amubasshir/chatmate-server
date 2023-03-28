@@ -9,8 +9,12 @@ const userRoute = require('./routes/userRoute');
 const app = express();
 
 // middleware
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
 
 // endpoints
 app.use('/api/user', userRoute);
